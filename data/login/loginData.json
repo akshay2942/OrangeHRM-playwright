@@ -1,0 +1,34 @@
+{
+  "validLogin": {
+    "expectedUrlPart": "dashboard"
+  },
+  "invalidPassword": {
+    "username": "Admin",
+    "password": "wrongPassword123",
+    "expectedError": "Invalid credentials"
+  },
+  "invalidUsername": {
+    "username": "InvalidUser999",
+    "password": "admin123",
+    "expectedError": "Invalid credentials"
+  },
+  "emptyUsername": {
+    "username": "",
+    "password": "admin123",
+    "expectedRequiredCount": 1
+  },
+  "emptyPassword": {
+    "username": "Admin",
+    "password": "",
+    "expectedRequiredCount": 1
+  },
+  "bothEmpty": {
+    "username": "",
+    "password": "",
+    "expectedRequiredCount": 2
+  },
+  "forgotPassword": {
+    "username": "Admin",
+    "successMessage": "Reset Password link sent successfully"
+  }
+}

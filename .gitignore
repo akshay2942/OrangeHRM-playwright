@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# Environment overrides (keep committed .env.qa / .env.stage / .env.prod examples)
+.env.local
+.env.*.local
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Reports & artifacts
+reports/html/
+reports/allure-report/
+allure-results/
+screenshots/**
+!screenshots/.gitkeep
+videos/**
+!videos/.gitkeep
+traces/**
+!traces/.gitkeep
+logs/**
+!logs/.gitkeep
+
+# Auth storage state
+data/auth/storageState.json
+data/auth/*.json
+!data/auth/.gitkeep
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Coverage
+coverage/
+
+logs
+videos
+traces
+reports
+screenshots

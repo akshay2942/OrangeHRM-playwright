@@ -1,0 +1,9 @@
+{
+  "searchExistingUser": {
+    "username": "Admin"
+  },
+  "newUserDefaults": {
+    "userRole": "ESS",
+    "status": "Enabled"
+  }
+}
