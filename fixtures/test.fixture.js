@@ -35,7 +35,55 @@ import { ScreenshotUtility } from '../utils/screenshotUtility.js';
 import { logExecutionStart, logExecutionEnd, logger } from '../utils/logger.js';
 
 /**
- * Extended Playwright fixtures — pages for services, services for tests.
+ * Custom fixtures exposed to every test. This explicit type is what lets the
+ * JavaScript language service resolve methods such as dashboardService
+ * .isSideMenuVisible() back to their declarations.
+ *
+ * @typedef {object} TestFixtures
+ * @property {LoginPage} loginPage
+ * @property {DashboardPage} dashboardPage
+ * @property {LogoutPage} logoutPage
+ * @property {ForgotPasswordPage} forgotPasswordPage
+ * @property {AdminPage} adminPage
+ * @property {PimPage} pimPage
+ * @property {EmployeeListPage} employeeListPage
+ * @property {LeavePage} leavePage
+ * @property {AssignLeavePage} assignLeavePage
+ * @property {TimePage} timePage
+ * @property {RecruitmentPage} recruitmentPage
+ * @property {CandidateListPage} candidateListPage
+ * @property {VacancyPage} vacancyPage
+ * @property {MyInfoPage} myInfoPage
+ * @property {PerformancePage} performancePage
+ * @property {DirectoryPage} directoryPage
+ * @property {MaintenancePage} maintenancePage
+ * @property {BuzzPage} buzzPage
+ * @property {ClaimPage} claimPage
+ * @property {LoginService} loginService
+ * @property {DashboardService} dashboardService
+ * @property {AdminService} adminService
+ * @property {PimService} pimService
+ * @property {LeaveService} leaveService
+ * @property {TimeService} timeService
+ * @property {RecruitmentService} recruitmentService
+ * @property {DirectoryService} directoryService
+ * @property {PerformanceService} performanceService
+ * @property {BuzzService} buzzService
+ * @property {NavigationService} navigationService
+ * @property {import('@playwright/test').APIRequestContext} apiContext
+ * @property {ApiUtility} apiUtility
+ * @property {(username?: string, password?: string) => Promise<void>} authenticate
+ */
+/**
+ * Keep Playwright's built-in fixtures (`page`, `browser`, etc.) alongside the
+ * custom fixtures above.
+ * @type {import('@playwright/test').TestType<
+ *   import('@playwright/test').PlaywrightTestArgs &
+ *   import('@playwright/test').PlaywrightTestOptions &
+ *   TestFixtures,
+ *   import('@playwright/test').PlaywrightWorkerArgs &
+ *   import('@playwright/test').PlaywrightWorkerOptions
+ * >}
  */
 export const test = base.extend({
   loginPage: async ({ page }, use) => {
