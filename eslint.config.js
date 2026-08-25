@@ -6,9 +6,22 @@ import tseslint from 'typescript-eslint';
 /** @type {import('eslint').Linter.Config[]} */
 export default tseslint.config(
   js.configs.recommended,
-  ...tseslint.configs.recommended,
   eslintConfigPrettier,
   {
+    ignores: [
+      'node_modules/**',
+      'reports/**',
+      'allure-results/**',
+      'test-results/**',
+      'screenshots/**',
+      'videos/**',
+      'traces/**',
+      'logs/**',
+    ],
+  },
+  {
+    files: ['**/*.ts'],
+    extends: [...tseslint.configs.recommended],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
@@ -30,15 +43,23 @@ export default tseslint.config(
     },
   },
   {
-    ignores: [
-      'node_modules/**',
-      'reports/**',
-      'allure-results/**',
-      'test-results/**',
-      'screenshots/**',
-      'videos/**',
-      'traces/**',
-      'logs/**',
-    ],
+    files: ['**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+      },
+    },
+    rules: {
+      'no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+      'no-console': 'off',
+      'prefer-const': 'error',
+      eqeqeq: ['error', 'always'],
+    },
   },
 );

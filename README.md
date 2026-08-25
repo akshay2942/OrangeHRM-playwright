@@ -1,6 +1,6 @@
 # Playwright OrangeHRM Framework
 
-Enterprise Playwright + TypeScript automation framework for [OrangeHRM](https://opensource-demo.orangehrmlive.com/) using Page Object Model, fixtures, Allure/HTML reporting, multi-env dotenv, ESLint/Prettier, and official Playwright MCP.
+Enterprise Playwright automation framework (TypeScript + JavaScript) for [OrangeHRM](https://opensource-demo.orangehrmlive.com/) using Page Object Model, fixtures, Allure/HTML reporting, multi-env dotenv, ESLint/Prettier, and official Playwright MCP.
 
 ## Quick start
 
@@ -39,6 +39,41 @@ playwright-orangehrm/
 
 **POM rule:** locators stay in `locators/`, actions in `pages/`, assertions in specs (`expect`) or thin assertion helpers — never mixed into action methods.
 
+## TypeScript + JavaScript
+
+The framework core (`pages/`, `services/`, `fixtures/`, `api/`, `utils/`) is written in **TypeScript**. You can write tests in **either TypeScript or JavaScript**.
+
+| Layer | Language | Notes |
+| --- | --- | --- |
+| `pages/`, `services/`, `fixtures/` | TypeScript | Shared typed framework code |
+| `tests/**/*.spec.ts` | TypeScript | Full type inference from fixtures |
+| `tests/**/*.spec.js` | JavaScript | Import TS modules; add `// @ts-check` + JSDoc for hints |
+
+**JavaScript test example** — see `tests/examples/javascript.spec.js`:
+
+```javascript
+// @ts-check
+import { test, expect } from '../../fixtures/test.fixture.js';
+
+test.describe('My feature @smoke', () => {
+  test('example', async ({ page, dashboardService }) => {
+    await dashboardService.open();
+    await expect(page).toHaveURL(/dashboard/i);
+  });
+});
+```
+
+Rules for JS files:
+
+- Use ES modules (`import` / `export`) — the project uses `"type": "module"`
+- Use `.js` extensions in import paths (e.g. `'../../fixtures/test.fixture.js'`)
+- Optional: add `// @ts-check` at the top and JSDoc `@typedef` imports for editor/typecheck support
+
+```bash
+npm run test:js                              # run only *.spec.js files
+npx playwright test tests/examples/javascript.spec.js
+```
+
 ## Scripts
 
 | Script | Purpose |
@@ -49,6 +84,7 @@ playwright-orangehrm/
 | `npm run test:headed` | Headed mode |
 | `npm run test:chrome` / `firefox` / `webkit` / `edge` | Single browser |
 | `npm run test:ui` | Playwright UI mode |
+| `npm run test:js` | JavaScript specs only (`*.spec.js`) |
 | `npm run report` | Open HTML report |
 | `npm run report:allure` | Generate + open Allure |
 | `npm run lint` / `format` / `typecheck` | ESLint / Prettier / `tsc --noEmit` |
