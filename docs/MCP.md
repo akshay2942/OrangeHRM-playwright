@@ -31,7 +31,7 @@ Remove `--headless` if you want a visible browser while MCP navigates.
 - "Open the OrangeHRM login page and list stable role/label locators for username, password, and Login."
 - "Navigate to Admin → System Users and generate a locator file + AdminPage methods for search and add user."
 - "A test failed with this trace/screenshot — suggest a more resilient selector."
-- "Compare my `login.locators.js` against the live page and flag brittle CSS."
+- "Compare my `login.locators.ts` against the live page and flag brittle CSS."
 
 ## Best practices with MCP
 

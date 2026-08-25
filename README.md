@@ -1,6 +1,6 @@
 # Playwright OrangeHRM Framework
 
-Enterprise Playwright + JavaScript automation framework for [OrangeHRM](https://opensource-demo.orangehrmlive.com/) using Page Object Model, fixtures, Allure/HTML reporting, multi-env dotenv, ESLint/Prettier, and official Playwright MCP.
+Enterprise Playwright + TypeScript automation framework for [OrangeHRM](https://opensource-demo.orangehrmlive.com/) using Page Object Model, fixtures, Allure/HTML reporting, multi-env dotenv, ESLint/Prettier, and official Playwright MCP.
 
 ## Quick start
 
@@ -51,7 +51,7 @@ playwright-orangehrm/
 | `npm run test:ui` | Playwright UI mode |
 | `npm run report` | Open HTML report |
 | `npm run report:allure` | Generate + open Allure |
-| `npm run lint` / `format` | ESLint / Prettier |
+| `npm run lint` / `format` / `typecheck` | ESLint / Prettier / `tsc --noEmit` |
 | `npm run auth:setup` | Regenerate storage state |
 
 ## Environments
@@ -68,7 +68,7 @@ Do not commit secrets beyond the documented demo credentials.
 
 ## Auth / storage state
 
-- Setup project `tests/auth.setup.js` logs in once and writes `data/auth/storageState.json` (gitignored).
+- Setup project `tests/auth.setup.ts` logs in once and writes `data/auth/storageState.json` (gitignored).
 - Chromium/Firefox/WebKit/Edge projects reuse that state.
 - Login specs run on `chromium-login` without storage state.
 

@@ -1,7 +1,7 @@
 {
   "name": "playwright-orangehrm",
   "version": "1.0.0",
-  "description": "Enterprise Playwright automation framework for OrangeHRM",
+  "description": "Enterprise Playwright + TypeScript automation framework for OrangeHRM",
   "type": "module",
   "scripts": {
     "test": "playwright test",
@@ -16,10 +16,11 @@
     "test:ui": "playwright test --ui",
     "report": "playwright show-report reports/html",
     "report:allure": "allure generate allure-results --clean -o reports/allure-report && allure open reports/allure-report",
-    "lint": "eslint . --ext .js",
-    "lint:fix": "eslint . --ext .js --fix",
-    "format": "prettier --write \"**/*.{js,json,md}\"",
-    "format:check": "prettier --check \"**/*.{js,json,md}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
+    "typecheck": "tsc --noEmit",
     "auth:setup": "playwright test --project=setup"
   },
   "keywords": [
@@ -35,6 +36,7 @@
     "@eslint/js": "^9.17.0",
     "@faker-js/faker": "^9.3.0",
     "@playwright/test": "^1.49.1",
+    "@types/node": "^26.3.0",
     "allure-commandline": "^2.32.0",
     "allure-playwright": "^3.0.7",
     "csv-parse": "^5.6.0",
@@ -43,6 +45,8 @@
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.68.0",
     "winston": "^3.17.0",
     "xlsx": "^0.18.5"
   },
