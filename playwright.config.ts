@@ -48,7 +48,7 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: /auth\.setup\.ts/,
+      testMatch: /auth\.setup\.(ts|js)/,
     },
     {
       name: 'chromium',
@@ -57,7 +57,7 @@ export default defineConfig({
         storageState: envConfig.storageStatePath,
       },
       dependencies: ['setup'],
-      testIgnore: [/auth\.setup\.ts/, /login\//],
+      testIgnore: [/auth\.setup\.(ts|js)/, /login\//],
     },
     {
       name: 'chromium-login',
@@ -65,7 +65,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         storageState: { cookies: [], origins: [] },
       },
-      testMatch: /login\/.*\.spec\.ts/,
+      testMatch: /login\/.*\.spec\.(ts|js)/,
     },
     {
       name: 'firefox',
@@ -74,7 +74,7 @@ export default defineConfig({
         storageState: envConfig.storageStatePath,
       },
       dependencies: ['setup'],
-      testIgnore: [/auth\.setup\.ts/, /login\//, /scaffold\.spec\.ts/],
+      testIgnore: [/auth\.setup\.(ts|js)/, /login\//, /scaffold\.spec\.(ts|js)/],
     },
     {
       name: 'webkit',
@@ -83,7 +83,7 @@ export default defineConfig({
         storageState: envConfig.storageStatePath,
       },
       dependencies: ['setup'],
-      testIgnore: [/auth\.setup\.ts/, /login\//, /scaffold\.spec\.ts/],
+      testIgnore: [/auth\.setup\.(ts|js)/, /login\//, /scaffold\.spec\.(ts|js)/],
     },
     {
       name: 'edge',
@@ -93,7 +93,7 @@ export default defineConfig({
         storageState: envConfig.storageStatePath,
       },
       dependencies: ['setup'],
-      testIgnore: [/auth\.setup\.ts/, /login\//, /scaffold\.spec\.ts/],
+      testIgnore: [/auth\.setup\.(ts|js)/, /login\//, /scaffold\.spec\.(ts|js)/],
     },
   ],
 });
